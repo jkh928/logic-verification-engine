@@ -1,34 +1,39 @@
-# Logic Verification Engine (`logic_gates.py`)
+# Logic Verification Engine
 
-### Overview
-A Python-based toolkit designed to simulate, analyze, and verify complex digital logic circuits. This engine prioritizes **system integrity** by providing automated tools to generate truth tables and mathematically prove logical equivalence between different circuit architectures.
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Active%20Development-green" alt="Status">
+  <img src="https://img.shields.io/badge/Language-Python%203.x-blue" alt="Language">
+  <img src="https://img.shields.io/badge/Focus-Discrete%20Mathematics-orange" alt="Focus">
+</p>
 
-### Core Features
+## 📖 Overview
+The **Logic Verification Engine** is a modular Python package designed to simulate, analyze, and mathematically audit logical systems. Moving beyond simple calculations, this engine prioritizes **System Integrity** by providing automated tools to verify tautologies and programmatically prove logical equivalences.
+
+This toolkit serves as a foundation for transitioning abstract discrete mathematics into verifiable software constraints, essential for Safety-Critical Systems and Natural Language Processing (NLP).
+
+## 📂 Repository Structure
+```text
+logic-verification-engine/
+├── engine/                # Core Logic Package
+│   ├── __init__.py        # Package Initializer
+│   ├── logic_gates.py     # Boolean operations and Truth Table generation
+│   └── quantifiers.py     # Universal (∀) and Existential (∃) verification
+├── README.md
+└── .gitignore
+```
+## 🛠 Core Modules
+
+### 1. Boolean Logic & Tautology Testing (logic_gates.py)
 * **Gate Simulation**: Full support for AND, OR, NOT, NAND, NOR, XOR, and XNOR operations.
-* **Truth Table Generation**: Automates the mapping of all possible input combinations ($2^n$) to determine output states.
-* **Equivalence Verification**: Implements the **Tautology Test** to programmatically confirm if two compound statements or circuits are logically identical.
+* **Equivalence Verification**: Implements the **Tautology Test** to confirm if two compound statements are logically identical by evaluating the biconditional: P ↔ Q.
+
+### 2. Predicate Logic & Quantifiers (quantifiers.py)
+* **Universal (∀) & Existential (∃) Engines**: Evaluates predicates across variable domains to identify global constraints or specific supporting evidence.
+* **Traceable Verification**: Unlike standard boolean returns, the engine identifies and returns the specific **Counterexample** (for ∀) or **Supporting Evidence** (for ∃) that triggered the result.
+* **De Morgan Consistency Audit**: An internal verification layer that programmatically proves the mathematical consistency of negations (e.g., ¬[∀x P(x)] ≡ ∃x ¬P(x)).
+
+## 🚀 Interview Highlight: The "Audit" Mindset
+In engineering, "it works" is insufficient; "it is provable" is the standard. This engine is built with an **Audit Layer** that ensures software operations strictly follow the laws of discrete mathematics. By returning the specific data point that falsifies a universal statement, the engine provides the **Transparency** required for debugging complex automated decision-making systems.
 
 ---
-
-### Mathematical Foundation: The Tautology Test
-In safety-critical systems, visual comparison of truth tables is insufficient for formal verification. This engine verifies the logical equivalence ($P \equiv Q$) by evaluating the biconditional statement:
-
-$$P \leftrightarrow Q$$
-
-The system identifies the two circuits as **Equivalent** if and only if the resulting column is a **Tautology** (all True). This ensures that no "algorithmic error" or edge-case mismatch exists between a simplified circuit and its original logic.
-
----
-
-### Usage Example
-```python
-from logic_gates import LogicEngine
-
-# Define two different logical expressions
-circuit_a = "(P and Q) or (not P)"
-circuit_b = "not P or Q"
-
-# Verify Equivalence using the Tautology Test
-verifier = LogicEngine()
-is_equivalent = verifier.check_equivalence(circuit_a, circuit_b)
-
-print(f"Logic Verified: {is_equivalent}")
+*Author: Josh Hasam*
